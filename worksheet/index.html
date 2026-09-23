@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>需求拆解學習單</title>
+<style>
+  @page { size: A4; margin: 13mm 16mm; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "PingFang TC", "Noto Sans TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+    color: #15181d;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page { width: 178mm; margin: 0 auto; }
+  .page + .page { break-before: page; }
+  header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    border-bottom: 2pt solid #15181d; padding-bottom: 2mm; margin-bottom: 3.5mm;
+  }
+  h1 { font-size: 18pt; margin: 0; }
+  .meta { font-size: 9.5pt; color: #555; text-align: right; }
+  .name { font-size: 10.5pt; margin-bottom: 3.5mm; }
+  .name span { display: inline-block; border-bottom: 1px solid #888; width: 60mm; margin: 0 6mm 0 2mm; }
+  section { margin-bottom: 3mm; }
+  h2 { font-size: 12pt; margin: 0 0 1mm; display: flex; align-items: center; gap: 2.5mm; }
+  .n {
+    display: inline-flex; width: 6.5mm; height: 6.5mm; border-radius: 1.5mm;
+    background: #15181d; color: #fff; font-size: 10pt; align-items: center; justify-content: center;
+  }
+  .hint { color: #555; font-size: 9.5pt; margin: 0 0 1.5mm; }
+  .ex {
+    background: #eeeeee; border-left: 2.5pt solid #777; padding: 1.5mm 3mm;
+    font-size: 9pt; color: #333; margin-bottom: 2mm;
+  }
+  .ex b { color: #15181d; }
+  .prompt {
+    border: 1px dashed #555; border-radius: 1.5mm; padding: 2mm 3mm; margin-bottom: 2mm;
+    font-size: 9.5pt; line-height: 1.55;
+  }
+  .prompt b { display: block; margin-bottom: 0.5mm; }
+  .line { border-bottom: 1px solid #888; height: 8mm; }
+  .item { display: flex; align-items: flex-end; gap: 2mm; height: 8mm; border-bottom: 1px solid #888; }
+  .item .k { font-weight: 700; color: #555; width: 5mm; }
+  .box { display: inline-block; width: 3.5mm; height: 3.5mm; border: 1px solid #555; margin-bottom: 1.2mm; }
+  table.steps { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+  table.steps th { text-align: left; font-weight: 700; border-bottom: 1.5pt solid #15181d; padding: 1mm 1.5mm; }
+  table.steps td { border-bottom: 1px solid #888; height: 8.5mm; padding: 0 1.5mm; vertical-align: bottom; color: #555; }
+  table.steps .c1 { width: 7mm; }
+  table.steps .c3, table.steps .c4 { width: 30mm; }
+  table.steps tr.exrow td { background: #eeeeee; color: #333; font-size: 9pt; height: 7mm; vertical-align: middle; }
+  .check {
+    border: 1.5pt solid #15181d; border-radius: 2mm; padding: 2.5mm 4mm; margin-top: 2mm;
+    display: flex; justify-content: space-between; font-size: 10pt;
+  }
+  .glossary {
+    border: 1.5pt solid #15181d; border-radius: 2mm; padding: 3mm 4mm;
+    display: grid; grid-template-columns: 1fr 1fr; column-gap: 7mm; row-gap: 1.6mm; font-size: 9pt;
+  }
+  .glossary .t { font-weight: 700; }
+  .ways {
+    border: 1.5pt solid #15181d; border-radius: 2mm; padding: 3mm 4mm; margin-bottom: 3mm;
+    display: grid; row-gap: 1.6mm; font-size: 9pt;
+  }
+  .ways .t { font-weight: 700; }
+  .ways h3 { margin: 0 0 1mm; font-size: 11pt; }
+  .glossary h3 { grid-column: 1 / -1; margin: 0 0 1mm; font-size: 11pt; }
+  .tip { font-size: 9pt; color: #555; margin-top: 2.5mm; }
+  @media screen {
+    body { background: #e9e6df; padding: 10mm 0; }
+    .page { background: #fff; padding: 13mm 16mm; width: 210mm; min-height: 297mm; box-shadow: 0 2px 10px rgba(0,0,0,.15); margin-bottom: 10mm; }
+  }
+  @media screen and (max-width: 820px) {
+    body { padding: 0; font-size: 15px; }
+    .page { width: 100%; min-height: 0; padding: 20px 16px 28px; margin-bottom: 12px; }
+    h1 { font-size: 22px; }
+    header { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .meta { text-align: left; font-size: 13px; }
+    h2 { font-size: 18px; }
+    .hint, .ex, .prompt, .glossary, .ways, .tip, table.steps { font-size: 14px; }
+    .n { width: 26px; height: 26px; font-size: 15px; }
+    .line, .item { height: 34px; }
+    .check { flex-direction: column; gap: 6px; font-size: 14px; }
+    .glossary { grid-template-columns: 1fr; }
+    table.steps .c3, table.steps .c4 { width: 22%; }
+    table.steps td { height: 34px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header>
+    <h1>學習單：我想做什麼</h1>
+    <div class="meta">跟 AI 一起開發並讓成果自動上線<br>中研院 · 2026/09/23</div>
+  </header>
+  <div class="name">姓名<span></span>路線　□ A 研究發佈頁　□ B 自己的專案</div>
+
+  <section>
+    <h2><span class="n">1</span>我想做什麼</h2>
+    <p class="hint">一句話就好：做給誰用？解決什麼問題？</p>
+    <div class="ex"><b>範例</b>　做一個網頁，讓教授和業界看到我的研究，並且能聯絡到我。</div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </section>
+
+  <section>
+    <h2><span class="n">2</span>別人打開後會看到什麼</h2>
+    <p class="hint">照順序寫下來，從打開到離開。</p>
+    <div class="ex"><b>範例</b>　我的名字和照片 → 研究在做什麼 → 發表過的論文 → 怎麼聯絡我</div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </section>
+
+  <section>
+    <h2><span class="n">3</span>分成幾小步</h2>
+    <p class="hint">每一步做完都要看得到東西。不知道怎麼分？直接問 AI：</p>
+    <div class="prompt">
+      <b>問 AI 的話</b>
+      我想做：（寫上「我想做什麼」那一句）。幫我拆成 3 到 4 個小步驟，每一步做完都要看得到畫面。先不要動手，列出來給我選。
+    </div>
+    <p class="hint">動手前先猜要多久。AI 做出來很快，改到你要的樣子才花力氣——「做完應該長什麼樣子」寫得越清楚，改得越少。</p>
+    <table class="steps">
+      <tr><th class="c1"></th><th>小步驟</th><th class="c3">AI 做出來</th><th class="c4">改到我要的樣子</th></tr>
+      <tr class="exrow"><td>例</td><td>做出一頁自我介紹</td><td>1 分鐘</td><td>15 分鐘</td></tr>
+      <tr><td>1</td><td></td><td></td><td></td></tr>
+      <tr><td>2</td><td></td><td></td><td></td></tr>
+      <tr><td>3</td><td></td><td></td><td></td></tr>
+      <tr><td>4</td><td></td><td></td><td></td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2><span class="n">4</span>做完應該長什麼樣子</h2>
+    <p class="hint">寫成一眼就能確認的樣子，做完一條一條對。AI 說「完成了」不算數。</p>
+    <div class="ex"><b>範例</b>　看得到我的名字和研究摘要　／　用手機看排版不會亂掉　／　沒有 AI 自己編的假內容</div>
+    <div class="item"><span class="box"></span></div>
+    <div class="item"><span class="box"></span></div>
+    <div class="item"><span class="box"></span></div>
+  </section>
+
+  <div class="check">
+    <span><b>今天的三個關卡</b></span>
+    <span>□ ① 在自己電腦上看得到網頁</span>
+    <span>□ ② 拿到網址</span>
+    <span>□ ③ 改一句話，網站自己更新</span>
+  </div>
+</div>
+
+<div class="page">
+  <header>
+    <h1>進階、回顧與名詞小抄</h1>
+    <div class="meta">進階兩題有時間再寫</div>
+  </header>
+
+  <section>
+    <h2><span class="n">5</span>我要跟 AI 說的話（進階）</h2>
+    <p class="hint">把第一步寫成一段完整的話：要做什麼、內容從哪裡來、做到什麼程度。</p>
+    <div class="ex"><b>範例</b>　只用 HTML 和 CSS 做一個 index.html，不要裝任何套件。內容全部從 content.md 拿，不要自己編。動手前先告訴我你要建立哪些檔案。</div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </section>
+
+  <section>
+    <h2><span class="n">6</span>我的規則（寫進 AGENTS.md）</h2>
+    <p class="hint">你糾正過 AI 的話，就寫一條下來，下次開新對話不用再講。</p>
+    <div class="ex"><b>範例</b>　改東西前先告訴我要改哪些檔案　／　不要裝任何套件　／　內容只從 content.md 拿</div>
+    <div class="item"><span class="k">·</span></div>
+    <div class="item"><span class="k">·</span></div>
+  </section>
+
+  <section>
+    <h2><span class="n">7</span>我的網址</h2>
+    <div class="item" style="font-family: Menlo, monospace; color:#555;">https://</div>
+  </section>
+
+  <section>
+    <h2><span class="n">8</span>我以為……結果……</h2>
+    <p class="hint">今天最意外的一件事。例如：AI 一分鐘就生出網頁，但我花了十五分鐘才改到滿意。</p>
+    <div class="line"></div>
+  </section>
+
+  <div class="ways">
+    <h3>改不動的時候，三條路</h3>
+    <div><span class="t">慢慢改</span>　差一點點時最快。「標題太大，改成一半的大小」</div>
+    <div><span class="t">打掉重做</span>　改到第三次還不對就別再修。「這版不要了，重做一次，這次用單欄、左邊對齊」</div>
+    <div><span class="t">要五個版本</span>　自己也說不清楚要什麼時。「給我五個不同風格的版本，我看完再選」</div>
+  </div>
+
+  <div class="glossary">
+    <h3>名詞小抄</h3>
+    <div><span class="t">VS Code</span>　寫程式用的編輯器，今天在這裡跟 AI 合作</div>
+    <div><span class="t">AI agent</span>　會自己讀檔、改檔、執行指令的 AI</div>
+    <div><span class="t">AGENTS.md</span>　寫給 AI 看的規則檔，它每次開工前會先讀</div>
+    <div><span class="t">diff</span>　AI 改了哪些地方，綠色是新增、紅色是刪除</div>
+    <div><span class="t">Git</span>　幫你記錄每一個版本的工具</div>
+    <div><span class="t">GitHub</span>　放程式碼的雲端空間</div>
+    <div><span class="t">repo</span>　GitHub 上的一個專案資料夾</div>
+    <div><span class="t">commit</span>　存一個版本，並寫一句改了什麼</div>
+    <div><span class="t">push</span>　把電腦上的版本傳上 GitHub</div>
+    <div><span class="t">Cloudflare</span>　把 GitHub 上的檔案變成網站的服務</div>
+    <div><span class="t">部署</span>　把做好的東西放上網路，讓別人看得到</div>
+    <div><span class="t">自動部署（CD）</span>　一 push，網站就自己更新</div>
+  </div>
+
+  <p class="tip">卡住時跟 AI 講清楚三件事：你看到什麼畫面、出現什麼錯誤訊息、剛剛做了什麼。只說「還是不行」，它只能再猜一次。</p>
+</div>
+
+</body>
+</html>
